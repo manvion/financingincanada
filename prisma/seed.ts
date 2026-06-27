@@ -57,9 +57,9 @@ async function main() {
       linkedinUrl: "https://linkedin.com/company/financing-in-canada",
       facebookUrl: "https://facebook.com/financingincanada",
       businessHours: {
-        weekdays: "8:00 AM – 6:00 PM ET",
-        saturday: "9:00 AM – 2:00 PM ET",
-        sunday: "Closed",
+        weekdays: "8:00 AM – 5:00 PM PST",
+        saturday: "8:00 AM – 5:00 PM PST",
+        sunday: "8:00 AM – 5:00 PM PST",
       },
     },
   });

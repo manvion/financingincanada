@@ -27,9 +27,9 @@ export const NAV_LINKS = [
 export const LOCATIONS = ["Toronto", "Calgary", "Langley"];
 
 export const BUSINESS_HOURS = {
-  weekdays: "Mon – Fri · 8:00 AM – 6:00 PM",
-  saturday: "Sat · 9:00 AM – 2:00 PM",
-  sunday: "Sun · Closed",
+  weekdays: "Mon – Fri · 8:00 AM – 5:00 PM PST",
+  saturday: "Sat · 8:00 AM – 5:00 PM PST",
+  sunday: "Sun · 8:00 AM – 5:00 PM PST",
 };
 
 export const PROVINCES = [

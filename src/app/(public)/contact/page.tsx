@@ -25,9 +25,9 @@ export default async function ContactPage() {
   const settings = await getSettings();
   const email = settings?.email ?? SITE.email;
   const hours = (settings?.businessHours as { weekdays?: string; saturday?: string; sunday?: string } | null) ?? {
-    weekdays: "8:00 AM – 6:00 PM ET",
-    saturday: "9:00 AM – 2:00 PM ET",
-    sunday: "Closed",
+    weekdays: "8:00 AM – 5:00 PM PST",
+    saturday: "8:00 AM – 5:00 PM PST",
+    sunday: "8:00 AM – 5:00 PM PST",
   };
 
   return (

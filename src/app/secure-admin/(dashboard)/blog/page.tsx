@@ -3,22 +3,38 @@ import { ExternalLink, Pencil, Plus } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { AdminPageHeader, EmptyState } from "@/components/admin/page-header";
 import { DeleteButton } from "@/components/admin/delete-button";
+import { Pagination } from "@/components/site/pagination";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { formatDate } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
+const PER_PAGE = 12;
+
 const statusVariant = { PUBLISHED: "success", DRAFT: "secondary", SCHEDULED: "warning" } as const;
 
-export default async function AdminBlogPage() {
-  const blogs = await prisma.blog.findMany({ orderBy: { createdAt: "desc" } });
+type SearchParams = Promise<{ page?: string }>;
+
+export default async function AdminBlogPage({ searchParams }: { searchParams: SearchParams }) {
+  const { page: pageParam } = await searchParams;
+  const page = Math.max(1, Number(pageParam ?? "1") || 1);
+
+  const [total, blogs] = await Promise.all([
+    prisma.blog.count(),
+    prisma.blog.findMany({
+      orderBy: { createdAt: "desc" },
+      skip: (page - 1) * PER_PAGE,
+      take: PER_PAGE,
+    }),
+  ]);
+  const totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
 
   return (
     <div>
       <AdminPageHeader
         title="Blog Posts"
-        description={`${blogs.length} total posts`}
+        description={`${total} total posts`}
         action={
           <Button asChild variant="gold">
             <Link href="/secure-admin/blog/new"><Plus className="h-4 w-4" /> New Post</Link>
@@ -71,6 +87,8 @@ export default async function AdminBlogPage() {
           </div>
         </div>
       )}
+
+      <Pagination page={page} totalPages={totalPages} basePath="/secure-admin/blog" />
     </div>
   );
 }

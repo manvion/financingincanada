@@ -4,11 +4,14 @@ import { Plus, Pencil, ExternalLink } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { AdminPageHeader, EmptyState } from "@/components/admin/page-header";
 import { DeleteButton } from "@/components/admin/delete-button";
+import { Pagination } from "@/components/site/pagination";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { formatCurrency, PROVINCE_LABELS } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
+
+const PER_PAGE = 12;
 
 const statusVariant = {
   PUBLISHED: "success",
@@ -17,17 +20,28 @@ const statusVariant = {
   SOLD: "destructive",
 } as const;
 
-export default async function AdminListingsPage() {
-  const listings = await prisma.listing.findMany({
-    orderBy: { createdAt: "desc" },
-    include: { category: true, images: { orderBy: { order: "asc" }, take: 1 }, _count: { select: { leads: true } } },
-  });
+type SearchParams = Promise<{ page?: string }>;
+
+export default async function AdminListingsPage({ searchParams }: { searchParams: SearchParams }) {
+  const { page: pageParam } = await searchParams;
+  const page = Math.max(1, Number(pageParam ?? "1") || 1);
+
+  const [total, listings] = await Promise.all([
+    prisma.listing.count(),
+    prisma.listing.findMany({
+      orderBy: { createdAt: "desc" },
+      include: { category: true, images: { orderBy: { order: "asc" }, take: 1 }, _count: { select: { leads: true } } },
+      skip: (page - 1) * PER_PAGE,
+      take: PER_PAGE,
+    }),
+  ]);
+  const totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
 
   return (
     <div>
       <AdminPageHeader
         title="Equipment Listings"
-        description={`${listings.length} total listings`}
+        description={`${total} total listings`}
         action={
           <Button asChild variant="gold">
             <Link href="/secure-admin/listings/new"><Plus className="h-4 w-4" /> New Listing</Link>
@@ -102,6 +116,8 @@ export default async function AdminListingsPage() {
           </div>
         </div>
       )}
+
+      <Pagination page={page} totalPages={totalPages} basePath="/secure-admin/listings" />
     </div>
   );
 }

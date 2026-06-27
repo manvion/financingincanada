@@ -20,7 +20,7 @@ export const INDUSTRIES: Industry[] = [
     slug: "construction",
     name: "Construction",
     icon: "HardHat",
-    image: IMG("photo-1581094794329-c8112a89af12"),
+    image: IMG("photo-1504307651254-35680f356dfd"),
     categorySlug: "construction",
     headline: "Construction Equipment Financing",
     summary:
@@ -68,7 +68,7 @@ export const INDUSTRIES: Industry[] = [
     slug: "manufacturing",
     name: "Industrial & Manufacturing",
     icon: "Factory",
-    image: IMG("photo-1565043666747-69f6646db940"),
+    image: IMG("photo-1504328345606-18bbc8c9d7d1"),
     categorySlug: "manufacturing",
     headline: "Manufacturing Equipment Financing",
     summary:
@@ -116,7 +116,7 @@ export const INDUSTRIES: Industry[] = [
     slug: "medical",
     name: "Medical & Lab",
     icon: "Stethoscope",
-    image: IMG("photo-1516069677018-378515003435"),
+    image: IMG("photo-1666214280557-f1b5022eb634"),
     categorySlug: "medical",
     headline: "Medical & Lab Equipment Financing",
     summary:
@@ -188,7 +188,7 @@ export const INDUSTRIES: Industry[] = [
     slug: "hospitality",
     name: "Hospitality",
     icon: "UtensilsCrossed",
-    image: IMG("photo-1556910103-1c02745aae4d"),
+    image: IMG("photo-1581349485608-9469926a8e5e"),
     categorySlug: "restaurant",
     headline: "Hospitality & Restaurant Equipment Financing",
     summary:

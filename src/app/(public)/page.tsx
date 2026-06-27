@@ -12,12 +12,12 @@ import { Button } from "@/components/ui/button";
 import { WHY_CHOOSE_US, HOW_IT_WORKS, FAQS } from "@/lib/constants";
 
 const GALLERY = [
-  { label: "Construction", src: "photo-1581094794329-c8112a89af12" },
+  { label: "Construction", src: "photo-1504307651254-35680f356dfd" },
   { label: "Transportation", src: "photo-1601584115197-04ecc0da31d7" },
-  { label: "Manufacturing", src: "photo-1565043666747-69f6646db940" },
+  { label: "Manufacturing", src: "photo-1504328345606-18bbc8c9d7d1" },
   { label: "Agriculture", src: "photo-1530267981375-f0de937f5f13" },
   { label: "Technology", src: "photo-1558494949-ef010cbdcc31" },
-  { label: "Hospitality", src: "photo-1556910103-1c02745aae4d" },
+  { label: "Hospitality", src: "photo-1581349485608-9469926a8e5e" },
 ];
 const galleryImg = (id: string) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=600&q=75`;

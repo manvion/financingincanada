@@ -8,7 +8,6 @@ import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { settingsSchema, type SettingsInput } from "@/lib/validations";
@@ -19,8 +18,6 @@ export function SettingsForm({ initial, canEdit }: { initial: Partial<SettingsIn
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
     formState: { errors, isSubmitting },
   } = useForm<SettingsInput>({
     resolver: zodResolver(settingsSchema),
@@ -37,11 +34,6 @@ export function SettingsForm({ initial, canEdit }: { initial: Partial<SettingsIn
       linkedinUrl: initial.linkedinUrl ?? "",
       twitterUrl: initial.twitterUrl ?? "",
       instagramUrl: initial.instagramUrl ?? "",
-      smtpHost: initial.smtpHost ?? "",
-      smtpPort: initial.smtpPort ?? undefined,
-      smtpSecure: initial.smtpSecure ?? false,
-      smtpUser: initial.smtpUser ?? "",
-      smtpFrom: initial.smtpFrom ?? "",
       notifyEmail: initial.notifyEmail ?? "",
     },
   });
@@ -70,7 +62,7 @@ export function SettingsForm({ initial, canEdit }: { initial: Partial<SettingsIn
         <TabsList>
           <TabsTrigger value="company">Company</TabsTrigger>
           <TabsTrigger value="social">Social</TabsTrigger>
-          <TabsTrigger value="email">Email / SMTP</TabsTrigger>
+          <TabsTrigger value="email">Notifications</TabsTrigger>
         </TabsList>
 
         <TabsContent value="company">
@@ -102,22 +94,13 @@ export function SettingsForm({ initial, canEdit }: { initial: Partial<SettingsIn
         <TabsContent value="email">
           <Section>
             <p className="mb-4 rounded-lg bg-secondary/60 p-3 text-xs text-muted-foreground">
-              SMTP credentials configured here are stored for reference. For security, the live mail
-              transport uses environment variables (<code>SMTP_*</code>) at runtime.
+              The address that receives contact &amp; lead form submissions. Email delivery itself is
+              configured securely via environment variables on the server.
             </p>
             <Grid>
-              <F label="Notification Email" error={errors.notifyEmail?.message}><Input {...register("notifyEmail")} disabled={!canEdit} placeholder="admin@financingincanada.com" /></F>
-              <F label="From Address"><Input {...register("smtpFrom")} disabled={!canEdit} placeholder="noreply@financingincanada.com" /></F>
-              <F label="SMTP Host"><Input {...register("smtpHost")} disabled={!canEdit} /></F>
-              <F label="SMTP Port"><Input type="number" {...register("smtpPort")} disabled={!canEdit} /></F>
-              <F label="SMTP User"><Input {...register("smtpUser")} disabled={!canEdit} /></F>
-              <div className="flex items-center justify-between rounded-lg border p-3">
-                <div>
-                  <p className="text-sm font-medium">Use TLS/SSL</p>
-                  <p className="text-xs text-muted-foreground">Secure connection</p>
-                </div>
-                <Switch checked={watch("smtpSecure")} onCheckedChange={(v) => setValue("smtpSecure", v)} disabled={!canEdit} />
-              </div>
+              <F label="Notification Email" error={errors.notifyEmail?.message}>
+                <Input {...register("notifyEmail")} disabled={!canEdit} placeholder="info@financingincanada.com" />
+              </F>
             </Grid>
           </Section>
         </TabsContent>

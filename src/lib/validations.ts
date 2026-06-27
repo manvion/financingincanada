@@ -2,6 +2,13 @@ import { z } from "zod";
 
 const phoneRegex = /^[\d\s()+.-]{7,20}$/;
 
+// Accepts an absolute URL (https://…) OR a same-origin path (/api/uploads/…),
+// since uploaded images are stored in the DB and served from a relative path.
+const imageUrl = z
+  .string()
+  .min(1)
+  .refine((s) => s.startsWith("/") || /^https?:\/\//i.test(s), "Must be a URL or image path");
+
 export const leadSchema = z.object({
   name: z.string().min(2, "Please enter your name").max(120),
   company: z.string().max(160).optional().or(z.literal("")),
@@ -45,7 +52,7 @@ export const listingSchema = z.object({
   metaTitle: z.string().max(200).optional().or(z.literal("")),
   metaDescription: z.string().max(300).optional().or(z.literal("")),
   specifications: z.array(z.object({ label: z.string(), value: z.string() })).optional(),
-  images: z.array(z.object({ url: z.string().url(), alt: z.string().optional() })).optional(),
+  images: z.array(z.object({ url: imageUrl, alt: z.string().optional() })).optional(),
 });
 export type ListingInput = z.infer<typeof listingSchema>;
 
@@ -54,7 +61,7 @@ export const blogSchema = z.object({
   slug: z.string().min(3).max(200).optional(),
   excerpt: z.string().max(400).optional().or(z.literal("")),
   content: z.string().min(10),
-  coverImage: z.string().url().optional().or(z.literal("")),
+  coverImage: imageUrl.optional().or(z.literal("")),
   category: z.string().min(1),
   tags: z.array(z.string()).default([]),
   status: z.enum(["DRAFT", "PUBLISHED", "SCHEDULED"]),

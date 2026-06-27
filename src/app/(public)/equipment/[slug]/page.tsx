@@ -15,7 +15,7 @@ import { getListingBySlug, getRelatedListings } from "@/lib/queries";
 import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300; // ISR — CDN-cached, regenerated every 5 min
 
 type Params = Promise<{ slug: string }>;
 

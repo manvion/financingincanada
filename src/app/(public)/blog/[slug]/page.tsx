@@ -13,7 +13,7 @@ import { buildMetadata } from "@/lib/seo";
 import { formatDate } from "@/lib/utils";
 import { SITE } from "@/lib/constants";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300; // ISR — CDN-cached, regenerated every 5 min
 
 type Params = Promise<{ slug: string }>;
 

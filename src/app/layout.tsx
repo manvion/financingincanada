@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import Script from "next/script";
 import { Providers } from "@/components/providers";
-import { buildMetadata, organizationJsonLd } from "@/lib/seo";
+import { buildMetadata, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
 import "./globals.css";
 
@@ -25,14 +25,27 @@ export const metadata: Metadata = {
   ...buildMetadata({}),
   applicationName: SITE.name,
   authors: [{ name: SITE.name }],
+  creator: SITE.name,
+  publisher: SITE.name,
+  category: "finance",
   keywords: [
     "equipment financing Canada",
-    "equipment leasing",
-    "business financing",
+    "equipment leasing Canada",
+    "business equipment loans",
     "construction equipment financing",
-    "commercial financing Canada",
+    "truck financing Canada",
+    "commercial equipment financing",
+    "heavy equipment leasing",
+    "sale leaseback Canada",
   ],
   icons: { icon: "/favicon.svg" },
+  // Canada geo-targeting signals for search engines.
+  other: {
+    "geo.region": "CA",
+    "geo.placename": "Canada",
+    "distribution": "Canada",
+    "coverage": "Canada",
+  },
 };
 
 export const viewport: Viewport = {
@@ -52,7 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script
           id="org-jsonld"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify([organizationJsonLd(), websiteJsonLd()]) }}
         />
       </body>
     </html>

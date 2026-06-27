@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { Facebook, Instagram, Linkedin, Mail, MapPin } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Twitter } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { FooterCtaBand } from "@/components/site/footer-cta-band";
 import { SITE, LOCATIONS } from "@/lib/constants";
+import { getSettings } from "@/lib/queries";
 
 const footerNav = {
   Services: [
@@ -27,7 +28,16 @@ const footerNav = {
   ],
 };
 
-export function Footer() {
+export async function Footer() {
+  const settings = await getSettings().catch(() => null);
+  const email = settings?.email || SITE.email;
+  const socials = [
+    { Icon: Linkedin, href: settings?.linkedinUrl },
+    { Icon: Facebook, href: settings?.facebookUrl },
+    { Icon: Instagram, href: settings?.instagramUrl },
+    { Icon: Twitter, href: settings?.twitterUrl },
+  ].filter((s) => s.href);
+
   return (
     <footer className="bg-navy-950 text-white">
       <FooterCtaBand />
@@ -40,24 +50,22 @@ export function Footer() {
               {SITE.tagline}. Fast approvals, competitive rates, and flexible terms for businesses
               across every province and territory.
             </p>
-            <div className="mt-6 flex gap-3">
-              {[
-                { Icon: Linkedin, href: "https://linkedin.com" },
-                { Icon: Facebook, href: "https://facebook.com" },
-                { Icon: Instagram, href: "https://instagram.com" },
-              ].map(({ Icon, href }, i) => (
-                <a
-                  key={i}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-md border border-white/15 text-white/70 transition-colors hover:border-gold hover:text-gold"
-                  aria-label="Social link"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div>
+            {socials.length > 0 && (
+              <div className="mt-6 flex gap-3">
+                {socials.map(({ Icon, href }, i) => (
+                  <a
+                    key={i}
+                    href={href as string}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-10 w-10 items-center justify-center rounded-md border border-white/15 text-white/70 transition-colors hover:border-gold hover:text-gold"
+                    aria-label="Social link"
+                  >
+                    <Icon className="h-4 w-4" />
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
           {Object.entries(footerNav).map(([heading, links]) => (
@@ -77,8 +85,8 @@ export function Footer() {
         </div>
 
         <div className="mt-14 grid gap-6 border-t border-white/10 pt-8 sm:grid-cols-2">
-          <a href={`mailto:${SITE.email}`} className="flex items-center gap-2.5 text-sm text-white/60 hover:text-white">
-            <Mail className="h-4 w-4 text-gold" /> {SITE.email}
+          <a href={`mailto:${email}`} className="flex items-center gap-2.5 text-sm text-white/60 hover:text-white">
+            <Mail className="h-4 w-4 text-gold" /> {email}
           </a>
           <span className="flex items-center gap-2.5 text-sm text-white/60 sm:justify-end">
             <MapPin className="h-4 w-4 text-gold" /> Serving Canada-wide · {LOCATIONS.join(" · ")}

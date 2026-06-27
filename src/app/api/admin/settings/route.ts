@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { guardAdmin } from "@/lib/api-auth";
 import { settingsSchema } from "@/lib/validations";
@@ -45,6 +46,9 @@ export async function PATCH(req: Request) {
       notifyEmail: d.notifyEmail || null,
     },
   });
+
+  // Refresh the public site (footer, contact page) so changes appear immediately.
+  revalidatePath("/", "layout");
 
   return NextResponse.json({ ok: true, settings });
 }

@@ -58,8 +58,6 @@ export function buildMetadata({
 
 const ADDRESS = {
   "@type": "PostalAddress",
-  addressLocality: "Toronto",
-  addressRegion: "ON",
   addressCountry: "CA",
 };
 

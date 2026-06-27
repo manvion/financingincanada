@@ -4,7 +4,7 @@ import { PageHero } from "@/components/site/page-hero";
 import { ContactForm } from "@/components/forms/contact-form";
 import { getSettings } from "@/lib/queries";
 import { buildMetadata } from "@/lib/seo";
-import { SITE, LOCATIONS, SERVICE_AREA } from "@/lib/constants";
+import { SITE, SERVICE_AREA } from "@/lib/constants";
 
 export const metadata: Metadata = buildMetadata({
   title: "Contact Us",
@@ -82,7 +82,7 @@ export default async function ContactPage() {
               </div>
               <p className="mt-2 text-sm text-muted-foreground">{SERVICE_AREA.note}</p>
               <div className="mt-3 flex flex-wrap gap-2">
-                {["Canada-wide", ...LOCATIONS].map((loc) => (
+                {SERVICE_AREA.coverage.map((loc) => (
                   <span key={loc} className="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-foreground">
                     {loc}
                   </span>

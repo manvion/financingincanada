@@ -24,8 +24,6 @@ export const NAV_LINKS = [
   { href: "/blog", label: "Blog" },
 ];
 
-export const LOCATIONS = ["Toronto", "Calgary", "Langley"];
-
 export const BUSINESS_HOURS = {
   weekdays: "Mon – Fri · 8:00 AM – 5:00 PM PST",
   saturday: "Sat · 8:00 AM – 5:00 PM PST",
@@ -99,7 +97,7 @@ export const STATS = [
 
 export const SERVICE_AREA = {
   note: "100% online — proudly serving businesses across Canada.",
-  hubs: LOCATIONS, // regional coverage hubs
+  coverage: ["Canada-Wide", "Every Province", "Every Territory", "100% Online"],
 };
 
 // Service data (with detailed per-service content) lives in src/lib/services.ts

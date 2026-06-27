@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Twitter } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { FooterCtaBand } from "@/components/site/footer-cta-band";
-import { SITE, LOCATIONS } from "@/lib/constants";
+import { SITE } from "@/lib/constants";
 import { getSettings } from "@/lib/queries";
 
 const footerNav = {
@@ -89,7 +89,7 @@ export async function Footer() {
             <Mail className="h-4 w-4 text-gold" /> {email}
           </a>
           <span className="flex items-center gap-2.5 text-sm text-white/60 sm:justify-end">
-            <MapPin className="h-4 w-4 text-gold" /> Serving Canada-wide · {LOCATIONS.join(" · ")}
+            <MapPin className="h-4 w-4 text-gold" /> Proudly serving businesses Canada-wide
           </span>
         </div>
       </div>

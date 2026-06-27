@@ -134,6 +134,14 @@ export default async function ListingDetailPage({ params }: { params: Params }) 
                   </div>
                 ) : null}
 
+                <div className="mt-4 flex items-center gap-2 rounded-lg border border-gold/30 bg-gold/[0.06] px-3 py-2.5 text-sm">
+                  <MapPin className="h-4 w-4 shrink-0 text-gold" />
+                  <span className="text-foreground/90">
+                    Located in {listing.city ? `${listing.city}, ` : ""}
+                    {PROVINCE_LABELS[listing.province]} — <span className="font-semibold">financing available Canada-wide</span>
+                  </span>
+                </div>
+
                 <Separator className="my-6" />
 
                 <h3 className="font-display text-lg font-bold">Inquire About This Equipment</h3>

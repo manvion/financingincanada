@@ -54,7 +54,7 @@ export function Navbar() {
             </span>
             <span className="flex items-center gap-1.5">
               <Clock className="h-3.5 w-3.5 text-gold" />
-              Mon–Sun 8AM–5PM PST
+              Mon–Fri 8AM–5PM PST
             </span>
           </div>
           <div className="flex items-center gap-5">

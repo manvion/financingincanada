@@ -26,8 +26,8 @@ export const NAV_LINKS = [
 
 export const BUSINESS_HOURS = {
   weekdays: "Mon – Fri · 8:00 AM – 5:00 PM PST",
-  saturday: "Sat · 8:00 AM – 5:00 PM PST",
-  sunday: "Sun · 8:00 AM – 5:00 PM PST",
+  saturday: "Sat · Closed",
+  sunday: "Sun · Closed",
 };
 
 export const PROVINCES = [

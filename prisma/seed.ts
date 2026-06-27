@@ -58,8 +58,8 @@ async function main() {
       facebookUrl: "https://facebook.com/financingincanada",
       businessHours: {
         weekdays: "8:00 AM – 5:00 PM PST",
-        saturday: "8:00 AM – 5:00 PM PST",
-        sunday: "8:00 AM – 5:00 PM PST",
+        saturday: "Closed",
+        sunday: "Closed",
       },
     },
   });

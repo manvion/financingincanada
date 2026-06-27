@@ -11,7 +11,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ImageUploader, type UploadedImage } from "@/components/admin/image-uploader";
 import { useToast } from "@/hooks/use-toast";
 import { blogSchema, type BlogInput } from "@/lib/validations";
 import { slugify } from "@/lib/utils";
@@ -26,9 +25,6 @@ export function BlogForm({
 }) {
   const router = useRouter();
   const { toast } = useToast();
-  const [cover, setCover] = React.useState<UploadedImage[]>(
-    initial?.coverImage ? [{ url: initial.coverImage }] : []
-  );
   const [tagsInput, setTagsInput] = React.useState((initial?.tags ?? []).join(", "));
 
   const {
@@ -60,7 +56,7 @@ export function BlogForm({
   async function onSubmit(values: BlogInput) {
     const payload = {
       ...values,
-      coverImage: cover[0]?.url ?? "",
+      coverImage: "",
       tags: tagsInput.split(",").map((t) => t.trim()).filter(Boolean),
     };
     const url = blogId ? `/api/admin/blog/${blogId}` : "/api/admin/blog";
@@ -146,10 +142,6 @@ export function BlogForm({
               <Switch checked={watch("featured")} onCheckedChange={(v) => setValue("featured", v)} />
             </div>
           </div>
-        </Card>
-
-        <Card title="Cover Image">
-          <ImageUploader value={cover} onChange={setCover} multiple={false} />
         </Card>
 
         <Card title="Taxonomy">

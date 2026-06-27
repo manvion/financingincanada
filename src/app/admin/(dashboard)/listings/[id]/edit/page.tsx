@@ -39,10 +39,10 @@ export default async function EditListingPage({ params }: { params: Promise<{ id
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">
-        <Link href="/secure-admin/listings" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+        <Link href="/admin/listings" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
           <ArrowLeft className="h-4 w-4" /> Back to listings
         </Link>
-        <DeleteButton endpoint={`/api/admin/listings/${listing.id}`} redirectTo="/secure-admin/listings" label="Delete listing" />
+        <DeleteButton endpoint={`/api/admin/listings/${listing.id}`} redirectTo="/admin/listings" label="Delete listing" />
       </div>
       <h2 className="mb-6 font-display text-xl font-bold">Edit Listing</h2>
       <ListingForm categories={categories} initial={initial} listingId={listing.id} />

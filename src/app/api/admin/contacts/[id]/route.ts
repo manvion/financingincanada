@@ -8,7 +8,7 @@ type Params = { params: Promise<{ id: string }> };
 const patchSchema = z.object({ status: z.enum(["NEW", "CONTACTED", "ARCHIVED"]) });
 
 export async function PATCH(req: Request, { params }: Params) {
-  const guard = await guardAdmin({ superOnly: true });
+  const guard = await guardAdmin();
   if (guard.error) return guard.error;
   const { id } = await params;
 
@@ -21,7 +21,7 @@ export async function PATCH(req: Request, { params }: Params) {
 }
 
 export async function DELETE(_req: Request, { params }: Params) {
-  const guard = await guardAdmin({ superOnly: true });
+  const guard = await guardAdmin();
   if (guard.error) return guard.error;
   const { id } = await params;
   await prisma.contactSubmission.delete({ where: { id } });

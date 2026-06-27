@@ -44,7 +44,7 @@ export default async function AdminListingsPage({ searchParams }: { searchParams
         description={`${total} total listings`}
         action={
           <Button asChild variant="gold">
-            <Link href="/secure-admin/listings/new"><Plus className="h-4 w-4" /> New Listing</Link>
+            <Link href="/admin/listings/new"><Plus className="h-4 w-4" /> New Listing</Link>
           </Button>
         }
       />
@@ -100,7 +100,7 @@ export default async function AdminListingsPage({ searchParams }: { searchParams
                           <ExternalLink className="h-4 w-4" />
                         </Link>
                         <Link
-                          href={`/secure-admin/listings/${l.id}/edit`}
+                          href={`/admin/listings/${l.id}/edit`}
                           className="flex h-9 w-9 items-center justify-center rounded-lg text-primary hover:bg-secondary"
                           title="Edit"
                         >
@@ -117,7 +117,7 @@ export default async function AdminListingsPage({ searchParams }: { searchParams
         </div>
       )}
 
-      <Pagination page={page} totalPages={totalPages} basePath="/secure-admin/listings" />
+      <Pagination page={page} totalPages={totalPages} basePath="/admin/listings" />
     </div>
   );
 }

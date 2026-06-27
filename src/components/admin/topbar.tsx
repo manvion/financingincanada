@@ -65,7 +65,7 @@ export function Topbar({
             <DropdownMenuSeparator />
             <DropdownMenuItem
               className="text-destructive focus:text-destructive"
-              onClick={() => signOut({ callbackUrl: "/secure-admin/login" })}
+              onClick={() => signOut({ callbackUrl: "/admin/login" })}
             >
               <LogOut className="h-4 w-4" /> Sign out
             </DropdownMenuItem>

@@ -4,7 +4,7 @@ import { guardAdmin } from "@/lib/api-auth";
 import { settingsSchema } from "@/lib/validations";
 
 export async function PATCH(req: Request) {
-  const guard = await guardAdmin({ superOnly: true });
+  const guard = await guardAdmin();
   if (guard.error) return guard.error;
 
   const json = await req.json().catch(() => null);

@@ -9,7 +9,7 @@ import type { Role } from "@prisma/client";
 export const authOptions: NextAuthOptions = {
   session: { strategy: "jwt", maxAge: 60 * 60 * 8 }, // 8h
   pages: {
-    signIn: "/secure-admin/login",
+    signIn: "/admin/login",
   },
   providers: [
     CredentialsProvider({
@@ -77,7 +77,7 @@ export function isSuperAdmin(role?: Role | string) {
  */
 export async function requireSuperAdmin() {
   const session = await auth();
-  if (!session?.user) redirect("/secure-admin/login");
-  if (!isSuperAdmin(session.user.role)) redirect("/secure-admin/listings");
+  if (!session?.user) redirect("/admin/login");
+  if (!isSuperAdmin(session.user.role)) redirect("/admin/listings");
   return session.user;
 }

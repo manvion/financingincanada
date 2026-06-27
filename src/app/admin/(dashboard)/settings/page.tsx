@@ -1,12 +1,10 @@
 import { prisma } from "@/lib/prisma";
-import { requireSuperAdmin } from "@/lib/auth";
 import { AdminPageHeader } from "@/components/admin/page-header";
 import { SettingsForm } from "@/components/admin/settings-form";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminSettingsPage() {
-  await requireSuperAdmin();
   const settings = await prisma.settings.findUnique({ where: { id: "singleton" } });
 
   const canEdit = true;

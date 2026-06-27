@@ -9,7 +9,7 @@ function csvCell(value: unknown): string {
 }
 
 export async function GET() {
-  const guard = await guardAdmin({ superOnly: true });
+  const guard = await guardAdmin();
   if (guard.error) return guard.error;
 
   const leads = await prisma.lead.findMany({ orderBy: { createdAt: "desc" } });

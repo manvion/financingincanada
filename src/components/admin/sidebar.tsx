@@ -18,48 +18,35 @@ import { cn } from "@/lib/utils";
 
 const NAV_GROUPS: {
   label: string;
-  superOnly?: boolean;
   items: { href: string; label: string; icon: typeof LayoutDashboard; exact?: boolean }[];
 }[] = [
   {
     label: "Overview",
-    superOnly: true,
-    items: [{ href: "/secure-admin", label: "Dashboard", icon: LayoutDashboard, exact: true }],
+    items: [{ href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true }],
   },
   {
     label: "Content",
     items: [
-      { href: "/secure-admin/listings", label: "Equipment Listings", icon: Package },
-      { href: "/secure-admin/blog", label: "Blog Posts", icon: Newspaper },
+      { href: "/admin/listings", label: "Equipment Listings", icon: Package },
+      { href: "/admin/blog", label: "Blog Posts", icon: Newspaper },
     ],
   },
   {
     label: "Inbox",
-    superOnly: true,
     items: [
-      { href: "/secure-admin/leads", label: "Leads", icon: Users },
-      { href: "/secure-admin/contacts", label: "Contact Messages", icon: MailQuestion },
+      { href: "/admin/leads", label: "Leads", icon: Users },
+      { href: "/admin/contacts", label: "Contact Messages", icon: MailQuestion },
     ],
   },
   {
     label: "System",
-    superOnly: true,
-    items: [{ href: "/secure-admin/settings", label: "Settings", icon: Settings }],
+    items: [{ href: "/admin/settings", label: "Settings", icon: Settings }],
   },
 ];
 
-export function Sidebar({
-  open,
-  onClose,
-  role,
-}: {
-  open: boolean;
-  onClose: () => void;
-  role: string;
-}) {
+export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
   const pathname = usePathname();
-  const isSuper = role === "SUPER_ADMIN";
-  const groups = NAV_GROUPS.filter((g) => isSuper || !g.superOnly);
+  const groups = NAV_GROUPS;
 
   return (
     <>
@@ -71,7 +58,7 @@ export function Sidebar({
         )}
       >
         <div className="flex h-16 items-center justify-between border-b border-white/[0.06] px-5">
-          <Logo variant="light" href="/secure-admin" />
+          <Logo variant="light" href="/admin" />
           <button onClick={onClose} className="text-white/50 lg:hidden" aria-label="Close menu">
             <X className="h-5 w-5" />
           </button>

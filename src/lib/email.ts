@@ -144,7 +144,7 @@ export function leadNotificationEmail(data: {
       ${row("Source", sourceLabel)}
       ${data.message ? row("Message", data.message.replace(/\n/g, "<br/>")) : ""}
     </table>
-    <a href="${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/secure-admin/leads" style="display:inline-block;margin-top:24px;background:${GOLD};color:#0a1a3c;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:8px;font-size:14px">View in Dashboard →</a>
+    <a href="${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/admin/leads" style="display:inline-block;margin-top:24px;background:${GOLD};color:#0a1a3c;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:8px;font-size:14px">View in Dashboard →</a>
   `;
   const subject = data.listing
     ? `New Inquiry: ${data.listing.title}`

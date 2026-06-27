@@ -37,7 +37,7 @@ export default async function AdminBlogPage({ searchParams }: { searchParams: Se
         description={`${total} total posts`}
         action={
           <Button asChild variant="gold">
-            <Link href="/secure-admin/blog/new"><Plus className="h-4 w-4" /> New Post</Link>
+            <Link href="/admin/blog/new"><Plus className="h-4 w-4" /> New Post</Link>
           </Button>
         }
       />
@@ -74,7 +74,7 @@ export default async function AdminBlogPage({ searchParams }: { searchParams: Se
                         <Link href={`/blog/${b.slug}`} target="_blank" className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground hover:bg-secondary" title="View live">
                           <ExternalLink className="h-4 w-4" />
                         </Link>
-                        <Link href={`/secure-admin/blog/${b.id}/edit`} className="flex h-9 w-9 items-center justify-center rounded-lg text-primary hover:bg-secondary" title="Edit">
+                        <Link href={`/admin/blog/${b.id}/edit`} className="flex h-9 w-9 items-center justify-center rounded-lg text-primary hover:bg-secondary" title="Edit">
                           <Pencil className="h-4 w-4" />
                         </Link>
                         <DeleteButton endpoint={`/api/admin/blog/${b.id}`} iconOnly />
@@ -88,7 +88,7 @@ export default async function AdminBlogPage({ searchParams }: { searchParams: Se
         </div>
       )}
 
-      <Pagination page={page} totalPages={totalPages} basePath="/secure-admin/blog" />
+      <Pagination page={page} totalPages={totalPages} basePath="/admin/blog" />
     </div>
   );
 }

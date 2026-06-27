@@ -21,7 +21,7 @@ type FormValues = z.infer<typeof schema>;
 export function LoginForm({ className }: { className?: string }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/secure-admin";
+  const callbackUrl = searchParams.get("callbackUrl") || "/admin";
   const [error, setError] = React.useState<string | null>(null);
 
   const {

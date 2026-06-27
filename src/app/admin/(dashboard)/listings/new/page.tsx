@@ -10,7 +10,7 @@ export default async function NewListingPage() {
 
   return (
     <div>
-      <Link href="/secure-admin/listings" className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+      <Link href="/admin/listings" className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
         <ArrowLeft className="h-4 w-4" /> Back to listings
       </Link>
       <h2 className="mb-6 font-display text-xl font-bold">New Equipment Listing</h2>

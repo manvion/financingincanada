@@ -81,7 +81,7 @@ export function ListingForm({
       });
       if (!res.ok) throw new Error((await res.json()).error ?? "Save failed");
       toast({ variant: "success", title: listingId ? "Listing updated" : "Listing created" });
-      router.push("/secure-admin/listings");
+      router.push("/admin/listings");
       router.refresh();
     } catch (err) {
       toast({ variant: "destructive", title: "Save failed", description: err instanceof Error ? err.message : "" });

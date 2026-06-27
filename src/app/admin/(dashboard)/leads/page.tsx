@@ -6,7 +6,6 @@ import { DeleteButton } from "@/components/admin/delete-button";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { formatDate } from "@/lib/utils";
-import { requireSuperAdmin } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -18,7 +17,6 @@ const sourceLabel: Record<string, string> = {
 };
 
 export default async function AdminLeadsPage() {
-  await requireSuperAdmin();
   const leads = await prisma.lead.findMany({
     orderBy: { createdAt: "desc" },
     include: { listing: { select: { title: true } } },

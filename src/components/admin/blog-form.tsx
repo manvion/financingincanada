@@ -72,7 +72,7 @@ export function BlogForm({
       });
       if (!res.ok) throw new Error((await res.json()).error ?? "Save failed");
       toast({ variant: "success", title: blogId ? "Post updated" : "Post created" });
-      router.push("/secure-admin/blog");
+      router.push("/admin/blog");
       router.refresh();
     } catch (err) {
       toast({ variant: "destructive", title: "Save failed", description: err instanceof Error ? err.message : "" });

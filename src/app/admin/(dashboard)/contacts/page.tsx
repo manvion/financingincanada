@@ -4,12 +4,10 @@ import { AdminPageHeader, EmptyState } from "@/components/admin/page-header";
 import { StatusControl } from "@/components/admin/status-control";
 import { DeleteButton } from "@/components/admin/delete-button";
 import { formatDate } from "@/lib/utils";
-import { requireSuperAdmin } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminContactsPage() {
-  await requireSuperAdmin();
   const contacts = await prisma.contactSubmission.findMany({ orderBy: { createdAt: "desc" } });
 
   return (

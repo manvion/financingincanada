@@ -5,7 +5,7 @@ import { LoginForm } from "@/components/admin/login-form";
 import { Logo } from "@/components/logo";
 import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = buildMetadata({ title: "Admin Login", path: "/secure-admin/login", noIndex: true });
+export const metadata: Metadata = buildMetadata({ title: "Admin Login", path: "/admin/login", noIndex: true });
 
 export default function AdminLoginPage() {
   return (
@@ -58,10 +58,6 @@ export default function AdminLoginPage() {
           <Suspense fallback={<div className="mt-8 h-64 animate-pulse rounded-xl bg-secondary" />}>
             <LoginForm className="mt-8" />
           </Suspense>
-          <p className="mt-6 rounded-lg bg-secondary p-3 text-center text-xs text-muted-foreground">
-            Demo: <span className="font-medium text-foreground">admin@financingincanada.com</span> /{" "}
-            <span className="font-medium text-foreground">Admin123!Change</span>
-          </p>
         </div>
       </div>
     </div>

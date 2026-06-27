@@ -31,10 +31,10 @@ export default async function EditBlogPage({ params }: { params: Promise<{ id: s
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">
-        <Link href="/secure-admin/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+        <Link href="/admin/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
           <ArrowLeft className="h-4 w-4" /> Back to posts
         </Link>
-        <DeleteButton endpoint={`/api/admin/blog/${blog.id}`} redirectTo="/secure-admin/blog" label="Delete post" />
+        <DeleteButton endpoint={`/api/admin/blog/${blog.id}`} redirectTo="/admin/blog" label="Delete post" />
       </div>
       <h2 className="mb-6 font-display text-xl font-bold">Edit Post</h2>
       <BlogForm initial={initial} blogId={blog.id} />

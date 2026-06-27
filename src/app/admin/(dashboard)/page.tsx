@@ -10,14 +10,12 @@ import {
   getRecentLeads,
 } from "@/lib/admin-queries";
 import { formatRelative } from "@/lib/utils";
-import { requireSuperAdmin } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
 const statusVariant = { NEW: "success", CONTACTED: "gold", ARCHIVED: "secondary" } as const;
 
 export default async function AdminOverviewPage() {
-  await requireSuperAdmin();
   const [stats, leadsByMonth, topListings, recentLeads] = await Promise.all([
     getDashboardStats(),
     getLeadsByMonth(),
@@ -81,7 +79,7 @@ export default async function AdminOverviewPage() {
               <h3 className="font-display text-lg font-bold">Recent Leads</h3>
               <p className="text-sm text-muted-foreground">Latest financing inquiries</p>
             </div>
-            <Link href="/secure-admin/leads" className="text-sm font-medium text-gold hover:underline">
+            <Link href="/admin/leads" className="text-sm font-medium text-gold hover:underline">
               View all
             </Link>
           </div>

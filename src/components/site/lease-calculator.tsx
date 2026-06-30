@@ -38,13 +38,17 @@ export function LeaseCalculator({
 }) {
   const [mode, setMode] = React.useState<Mode>("finance");
   const [amount, setAmount] = React.useState(Math.round(defaultAmount));
+  const [downPayment, setDownPayment] = React.useState(0);
   const [term, setTerm] = React.useState(60);
 
+  // A down payment lowers the amount we actually finance.
+  const down = Math.min(Math.max(0, downPayment), amount);
+  const financed = amount - down;
   const residual = mode === "lease" ? LEASE_RESIDUAL : 0;
-  const monthly = computePayment(amount, RATE, term, residual);
+  const monthly = computePayment(financed, RATE, term, residual);
   const totalPayments = monthly * term;
   const totalCost = totalPayments + residual;
-  const financeCost = totalCost - amount;
+  const financeCost = totalCost - financed;
 
   return (
     <div className={cn("grid gap-8 lg:grid-cols-[1.1fr_0.9fr]", className)}>
@@ -103,6 +107,36 @@ export function LeaseCalculator({
         </div>
 
         <div>
+          <div className="flex items-end justify-between">
+            <Label className="text-sm">
+              Down Payment <span className="font-normal text-muted-foreground">(optional)</span>
+            </Label>
+            <span className="font-display text-lg font-semibold text-foreground">{formatCurrency(down)}</span>
+          </div>
+          <input
+            type="range"
+            min={0}
+            max={amount}
+            step={1000}
+            value={down}
+            onChange={(e) => setDownPayment(Number(e.target.value))}
+            className="mt-3 w-full accent-gold"
+          />
+          <div className="mt-2 flex justify-between text-xs text-muted-foreground">
+            <span>$0</span>
+            <span>{formatCurrency(amount)}</span>
+          </div>
+          <Input
+            type="number"
+            value={down}
+            min={0}
+            max={amount}
+            onChange={(e) => setDownPayment(Math.max(0, Math.min(amount, Number(e.target.value))))}
+            className="mt-3"
+          />
+        </div>
+
+        <div>
           <Label className="text-sm">Term Length</Label>
           <div className="mt-3 flex flex-wrap gap-2">
             {TERMS.map((t) => (
@@ -148,6 +182,18 @@ export function LeaseCalculator({
               <dt className="text-white/60">Term</dt>
               <dd className="font-medium">{term} months</dd>
             </div>
+            {down > 0 && (
+              <>
+                <div className="flex justify-between">
+                  <dt className="text-white/60">Down payment</dt>
+                  <dd className="font-medium">{formatCurrency(down)}</dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt className="text-white/60">Amount financed</dt>
+                  <dd className="font-medium">{formatCurrency(financed)}</dd>
+                </div>
+              </>
+            )}
             <div className="flex justify-between">
               <dt className="text-white/60">Total of payments</dt>
               <dd className="font-medium">{formatCurrency(totalPayments)}</dd>

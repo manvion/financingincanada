@@ -8,7 +8,7 @@ export function LenderMarquee() {
     <section className="border-b bg-background py-10">
       <div className="container-wide">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-          Backed by Canada&rsquo;s leading banks &amp; lenders
+          Preferred access to Canada&rsquo;s leading banks &amp; lenders
         </p>
 
         <div className="group relative mt-7 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">

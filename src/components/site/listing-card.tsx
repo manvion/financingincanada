@@ -16,10 +16,12 @@ export type ListingCardData = {
   category: { name: string };
   images: { url: string; alt?: string | null }[];
   featured?: boolean;
+  status?: string;
 };
 
 export function ListingCard({ listing }: { listing: ListingCardData }) {
   const cover = listing.images[0]?.url ?? "/placeholder.jpg";
+  const sold = listing.status === "SOLD";
   return (
     <Link
       href={`/equipment/${listing.slug}`}
@@ -31,14 +33,22 @@ export function ListingCard({ listing }: { listing: ListingCardData }) {
           alt={listing.images[0]?.alt ?? listing.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className={`object-cover transition-transform duration-500 group-hover:scale-105 ${sold ? "grayscale-[35%]" : ""}`}
         />
         <div className="absolute left-3 top-3 flex gap-2">
           <Badge variant={listing.condition === "NEW" ? "new" : "used"}>
             {listing.condition === "NEW" ? "New" : "Used"}
           </Badge>
-          {listing.featured && <Badge variant="gold">Featured</Badge>}
+          {listing.featured && !sold && <Badge variant="gold">Featured</Badge>}
         </div>
+        {sold && (
+          <>
+            <div className="absolute inset-0 bg-navy-950/25" />
+            <div className="absolute -right-12 top-5 rotate-45 bg-red-600 px-14 py-1.5 text-center text-sm font-bold uppercase tracking-widest text-white shadow-lg">
+              Sold
+            </div>
+          </>
+        )}
       </div>
 
       <div className="flex flex-1 flex-col p-5">

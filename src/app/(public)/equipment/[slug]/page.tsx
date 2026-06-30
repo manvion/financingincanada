@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Script from "next/script";
-import { ArrowLeft, Calendar, MapPin, Tag, Wrench } from "lucide-react";
+import { ArrowLeft, Calendar, Factory, MapPin, Tag, Wrench } from "lucide-react";
 import { PageHero } from "@/components/site/page-hero";
 import { ImageGallery } from "@/components/site/image-gallery";
 import { ListingCard } from "@/components/site/listing-card";
@@ -102,6 +102,7 @@ export default async function ListingDetailPage({ params }: { params: Params }) 
               )}
 
               <div className="mt-10 grid gap-4 sm:grid-cols-3">
+                {listing.make && <Meta icon={Factory} label="Make" value={listing.make} />}
                 <Meta icon={Tag} label="Condition" value={listing.condition === "NEW" ? "New" : "Used"} />
                 <Meta icon={MapPin} label="Location" value={`${listing.city ? listing.city + ", " : ""}${listing.province}`} />
                 {listing.year && <Meta icon={Calendar} label="Year" value={String(listing.year)} />}
@@ -112,10 +113,15 @@ export default async function ListingDetailPage({ params }: { params: Params }) 
             <aside className="lg:sticky lg:top-24 lg:self-start">
               <div className="rounded-2xl border bg-card p-6 shadow-card">
                 <div className="flex items-center gap-2">
+                  {listing.status === "SOLD" && (
+                    <span className="rounded-md bg-red-600 px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-white">
+                      Sold
+                    </span>
+                  )}
                   <Badge variant={listing.condition === "NEW" ? "new" : "used"}>
                     {listing.condition === "NEW" ? "New" : "Used"}
                   </Badge>
-                  {listing.featured && <Badge variant="gold">Featured</Badge>}
+                  {listing.featured && listing.status !== "SOLD" && <Badge variant="gold">Featured</Badge>}
                 </div>
                 <p className="mt-4 text-sm text-muted-foreground">Purchase price</p>
                 <p className="font-display text-4xl font-bold text-foreground">

@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Clock, Mail, MapPin, Menu, X } from "lucide-react";
+import { AtSign, MapPin, Menu, X } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
@@ -52,14 +52,10 @@ export function Navbar() {
               <MapPin className="h-3.5 w-3.5 text-gold" />
               Serving Canada-wide
             </span>
-            <span className="flex items-center gap-1.5">
-              <Clock className="h-3.5 w-3.5 text-gold" />
-              Mon–Fri 8AM–5PM PST
-            </span>
           </div>
           <div className="flex items-center gap-5">
             <a href={`mailto:${SITE.email}`} className="flex items-center gap-1.5 font-medium text-white transition-colors hover:text-gold">
-              <Mail className="h-3.5 w-3.5 text-gold" /> {SITE.email}
+              <AtSign className="h-3.5 w-3.5 text-gold" /> {SITE.email}
             </a>
             <Link href="/contact" className="text-white/50 transition-colors hover:text-white">
               Contact Us
@@ -139,7 +135,7 @@ export function Navbar() {
               href={`mailto:${SITE.email}`}
               className="mt-3 flex items-center justify-center gap-2 text-sm font-medium text-muted-foreground"
             >
-              <Mail className="h-4 w-4 text-gold" /> {SITE.email}
+              <AtSign className="h-4 w-4 text-gold" /> {SITE.email}
             </a>
           </nav>
         </div>

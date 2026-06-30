@@ -46,7 +46,7 @@ type ListingFilters = {
 export async function getListings(filters: ListingFilters) {
   const { category, province, condition, min, max, q, page = 1, perPage = 9 } = filters;
 
-  const where: Prisma.ListingWhereInput = { status: "PUBLISHED" };
+  const where: Prisma.ListingWhereInput = { status: { in: ["PUBLISHED", "SOLD"] } };
   if (category) where.category = { slug: category };
   if (province) where.province = province as Prisma.ListingWhereInput["province"];
   if (condition) where.condition = condition;
@@ -69,7 +69,8 @@ export async function getListings(filters: ListingFilters) {
     prisma.listing.findMany({
       where,
       include: { category: true, images: { orderBy: { order: "asc" }, take: 1 } },
-      orderBy: [{ featured: "desc" }, { createdAt: "desc" }],
+      // Available (PUBLISHED) first, then SOLD; enum order puts PUBLISHED before SOLD.
+      orderBy: [{ status: "asc" }, { featured: "desc" }, { createdAt: "desc" }],
       skip: (page - 1) * perPage,
       take: perPage,
     }),
@@ -92,7 +93,7 @@ export async function getListingBySlug(slug: string) {
       images: { orderBy: { order: "asc" } },
     },
   });
-  if (!listing || listing.status !== "PUBLISHED") return null;
+  if (!listing || (listing.status !== "PUBLISHED" && listing.status !== "SOLD")) return null;
 
   // best-effort view increment
   prisma.listing

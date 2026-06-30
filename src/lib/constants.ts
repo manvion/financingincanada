@@ -18,17 +18,11 @@ export const HERO = {
 export const NAV_LINKS = [
   { href: "/services", label: "Services" },
   { href: "/industries", label: "Industries" },
-  { href: "/equipment", label: "Equipment" },
+  { href: "/equipment", label: "Equipment Listings" },
   { href: "/vendors", label: "Vendors" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },
 ];
-
-export const BUSINESS_HOURS = {
-  weekdays: "Mon – Fri · 8:00 AM – 5:00 PM PST",
-  saturday: "Sat · Closed",
-  sunday: "Sun · Closed",
-};
 
 export const PROVINCES = [
   { value: "AB", label: "Alberta" },

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BadgeCheck, Clock, Mail, MapPin, ShieldCheck } from "lucide-react";
+import { AtSign, BadgeCheck, Clock, MapPin, ShieldCheck } from "lucide-react";
 import { PageHero } from "@/components/site/page-hero";
 import { ContactForm } from "@/components/forms/contact-form";
 import { getSettings } from "@/lib/queries";
@@ -24,11 +24,6 @@ const TRUST = [
 export default async function ContactPage() {
   const settings = await getSettings();
   const email = settings?.email ?? SITE.email;
-  const hours = (settings?.businessHours as { weekdays?: string; saturday?: string; sunday?: string } | null) ?? {
-    weekdays: "8:00 AM – 5:00 PM PST",
-    saturday: "Closed",
-    sunday: "Closed",
-  };
 
   return (
     <>
@@ -66,8 +61,8 @@ export default async function ContactPage() {
               href={`mailto:${email}`}
               className="flex items-center gap-4 rounded-xl border bg-card p-5 shadow-card transition-colors hover:border-gold/40"
             >
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-navy text-gold">
-                <Mail className="h-5 w-5" />
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gold/10 text-gold-700 ring-1 ring-gold/15 dark:text-gold">
+                <AtSign className="h-5 w-5" />
               </span>
               <div>
                 <p className="text-xs uppercase tracking-wider text-muted-foreground">Email Us</p>
@@ -88,18 +83,6 @@ export default async function ContactPage() {
                   </span>
                 ))}
               </div>
-            </div>
-
-            <div className="rounded-xl border bg-card p-5 shadow-card">
-              <div className="flex items-center gap-3">
-                <Clock className="h-5 w-5 text-gold" />
-                <h3 className="font-display text-base font-semibold">Business Hours</h3>
-              </div>
-              <dl className="mt-4 space-y-2 text-sm">
-                <div className="flex justify-between"><dt className="text-muted-foreground">Mon – Fri</dt><dd className="font-medium">{hours.weekdays}</dd></div>
-                <div className="flex justify-between"><dt className="text-muted-foreground">Saturday</dt><dd className="font-medium">{hours.saturday}</dd></div>
-                <div className="flex justify-between"><dt className="text-muted-foreground">Sunday</dt><dd className="font-medium">{hours.sunday}</dd></div>
-              </dl>
             </div>
           </div>
 

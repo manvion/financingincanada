@@ -11,26 +11,23 @@ import { formatCurrency, cn } from "@/lib/utils";
 
 type Mode = "finance" | "lease";
 
+// Rate is fixed for estimates and not shown to the user.
+const RATE = 10; // % annual
+const LEASE_RESIDUAL = 250; // fixed $ buyout at end of lease
+
 /**
- * Computes the monthly payment.
- * - Finance (loan): full amortization, residual = 0, you own the asset.
- * - Lease: residual (buyout) is deferred to end of term, lowering the payment.
+ * Monthly payment.
+ * - Finance: full amortization (residual 0) — you own it.
+ * - Lease: a fixed $250 residual is deferred to the end, lowering the payment.
  */
-function computePayment(principal: number, annualRatePct: number, months: number, residualPct: number) {
+function computePayment(principal: number, annualRatePct: number, months: number, residual: number) {
   const r = annualRatePct / 100 / 12;
-  const residual = principal * (residualPct / 100);
-  if (principal <= 0 || months <= 0) return { monthly: 0, residual: 0 };
-  if (r === 0) return { monthly: (principal - residual) / months, residual };
-  const monthly = ((principal - residual * Math.pow(1 + r, -months)) * r) / (1 - Math.pow(1 + r, -months));
-  return { monthly, residual };
+  if (principal <= 0 || months <= 0) return 0;
+  if (r === 0) return (principal - residual) / months;
+  return ((principal - residual * Math.pow(1 + r, -months)) * r) / (1 - Math.pow(1 + r, -months));
 }
 
 const TERMS = [12, 24, 36, 48, 60, 72, 84];
-const RESIDUALS = [
-  { label: "$10 Buyout (Lease-to-Own)", value: 0 },
-  { label: "10% Residual (FMV)", value: 10 },
-  { label: "20% Residual (FMV)", value: 20 },
-];
 
 export function LeaseCalculator({
   className,
@@ -42,13 +39,11 @@ export function LeaseCalculator({
   const [mode, setMode] = React.useState<Mode>("finance");
   const [amount, setAmount] = React.useState(Math.round(defaultAmount));
   const [term, setTerm] = React.useState(60);
-  const [rate, setRate] = React.useState(8.9);
-  const [residualPct, setResidualPct] = React.useState(10);
 
-  const effectiveResidual = mode === "finance" ? 0 : residualPct;
-  const { monthly, residual } = computePayment(amount, rate, term, effectiveResidual);
+  const residual = mode === "lease" ? LEASE_RESIDUAL : 0;
+  const monthly = computePayment(amount, RATE, term, residual);
   const totalPayments = monthly * term;
-  const totalCost = totalPayments + (mode === "lease" ? residual : 0);
+  const totalCost = totalPayments + residual;
   const financeCost = totalCost - amount;
 
   return (
@@ -76,7 +71,7 @@ export function LeaseCalculator({
           <p className="mt-2 text-xs text-muted-foreground">
             {mode === "finance"
               ? "Amortized loan — you own the equipment outright at the end."
-              : "Lower payments — purchase at the residual, renew, or return at term end."}
+              : "Lower payments — purchase the equipment for a $250 buyout at the end of the term."}
           </p>
         </div>
 
@@ -125,47 +120,6 @@ export function LeaseCalculator({
             ))}
           </div>
         </div>
-
-        {mode === "lease" && (
-          <div>
-            <Label className="text-sm">End-of-Lease Option</Label>
-            <div className="mt-3 grid gap-2 sm:grid-cols-3">
-              {RESIDUALS.map((res) => (
-                <button
-                  key={res.value}
-                  type="button"
-                  onClick={() => setResidualPct(res.value)}
-                  className={cn(
-                    "rounded-md border px-3 py-2.5 text-xs font-medium leading-tight transition-colors",
-                    residualPct === res.value ? "border-gold bg-gold/10 text-gold-700 dark:text-gold" : "border-border hover:bg-secondary"
-                  )}
-                >
-                  {res.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        <div>
-          <div className="flex items-end justify-between">
-            <Label className="text-sm">Estimated Annual Rate</Label>
-            <span className="font-display text-lg font-semibold text-foreground">{rate.toFixed(1)}%</span>
-          </div>
-          <input
-            type="range"
-            min={4}
-            max={18}
-            step={0.1}
-            value={rate}
-            onChange={(e) => setRate(Number(e.target.value))}
-            className="mt-3 w-full accent-gold"
-          />
-          <div className="mt-2 flex justify-between text-xs text-muted-foreground">
-            <span>4%</span>
-            <span>18%</span>
-          </div>
-        </div>
       </div>
 
       {/* Result */}
@@ -201,7 +155,7 @@ export function LeaseCalculator({
             {mode === "lease" && (
               <div className="flex justify-between">
                 <dt className="text-white/60">End-of-term buyout</dt>
-                <dd className="font-medium">{residual <= 0 ? "$10" : formatCurrency(residual)}</dd>
+                <dd className="font-medium">{formatCurrency(LEASE_RESIDUAL)}</dd>
               </div>
             )}
             <div className="flex justify-between">

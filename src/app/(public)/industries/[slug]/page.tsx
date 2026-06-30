@@ -81,7 +81,7 @@ export default async function IndustryDetailPage({ params }: { params: Params })
 
           <div className="rounded-2xl border bg-card p-7 shadow-card sm:p-8">
             <h3 className="flex items-center gap-3 font-display text-xl font-semibold">
-              <span className="flex h-10 w-10 items-center justify-center rounded-md bg-navy text-gold">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold/10 text-gold-700 ring-1 ring-gold/15 dark:text-gold">
                 <DynamicIcon name={industry.icon} className="h-5 w-5" />
               </span>
               {industry.name} Equipment We Finance

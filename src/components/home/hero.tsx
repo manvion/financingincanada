@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, ShieldCheck } from "lucide-react";
+import { ArrowRight, AtSign, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedCounter } from "@/components/animations";
 import { HERO, STATS } from "@/lib/constants";
@@ -75,14 +75,14 @@ export function Hero() {
               className="border-white/25 bg-transparent text-white hover:bg-white/10 hover:text-white"
             >
               <Link href="/contact">
-                <Mail className="h-4 w-4" /> Contact Us
+                <AtSign className="h-4 w-4" /> Contact Us
               </Link>
             </Button>
           </motion.div>
 
           <motion.p variants={item} className="mt-8 flex items-start gap-2 text-sm text-white/55">
             <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-            Backed by Canada&rsquo;s leading banks, lenders &amp; financial institutions
+            Preferred access to Canada&rsquo;s leading banks, lenders &amp; financial institutions
           </motion.p>
         </motion.div>
       </div>

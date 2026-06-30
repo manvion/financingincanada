@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, MapPin } from "lucide-react";
 import { Hero } from "@/components/home/hero";
 import { LenderMarquee } from "@/components/home/lender-marquee";
 import { SectionHeading } from "@/components/site/section-heading";
@@ -9,7 +9,7 @@ import { DynamicIcon } from "@/components/site/icon";
 import { Reveal } from "@/components/animations";
 import { LeadForm } from "@/components/forms/lead-form";
 import { Button } from "@/components/ui/button";
-import { WHY_CHOOSE_US, HOW_IT_WORKS, FAQS } from "@/lib/constants";
+import { WHY_CHOOSE_US, HOW_IT_WORKS, FAQS, PROVINCES } from "@/lib/constants";
 
 const GALLERY = [
   { label: "Construction", src: "photo-1504307651254-35680f356dfd" },
@@ -123,6 +123,32 @@ export default function HomePage() {
               <Link href="/apply">Start Your Application <ArrowRight className="h-4 w-4" /></Link>
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* ── Nationwide Coverage ──────────────────────────── */}
+      <section className="py-20 lg:py-28">
+        <div className="container-wide">
+          <SectionHeading
+            eyebrow="Nationwide Coverage"
+            title="Equipment Financing Across Canada"
+            description="We finance businesses in every province and territory — 100% online, from coast to coast to coast. Wherever you operate, your dedicated specialist does too."
+          />
+          <Reveal>
+            <ul className="mx-auto mt-12 flex max-w-4xl flex-wrap justify-center gap-2.5 sm:gap-3">
+              {PROVINCES.map((p) => (
+                <li key={p.value}>
+                  <Link
+                    href={`/equipment?province=${p.value}`}
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-2 text-xs font-medium text-foreground shadow-card transition-colors hover:border-gold/50 hover:text-gold-700 dark:hover:text-gold sm:px-4 sm:text-sm"
+                  >
+                    <MapPin className="h-3.5 w-3.5 shrink-0 text-gold" />
+                    {p.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
       </section>
 

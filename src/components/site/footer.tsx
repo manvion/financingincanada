@@ -43,8 +43,8 @@ export async function Footer() {
       <FooterCtaBand />
 
       <div className="container-wide py-16">
-        <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
-          <div>
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-12">
+          <div className="sm:col-span-2 lg:col-span-1">
             <Logo variant="light" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/60">
               {SITE.tagline}. Fast approvals, competitive rates, and flexible terms for businesses

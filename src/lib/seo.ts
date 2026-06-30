@@ -61,10 +61,28 @@ const ADDRESS = {
   addressCountry: "CA",
 };
 
-const AREA_SERVED = {
-  "@type": "Country",
-  name: "Canada",
-};
+// Every Canadian province and territory, so search engines understand the
+// business serves all locations across Canada (not a single city).
+export const PROVINCES_SERVED = [
+  "Alberta",
+  "British Columbia",
+  "Manitoba",
+  "New Brunswick",
+  "Newfoundland and Labrador",
+  "Northwest Territories",
+  "Nova Scotia",
+  "Nunavut",
+  "Ontario",
+  "Prince Edward Island",
+  "Quebec",
+  "Saskatchewan",
+  "Yukon",
+];
+
+const AREA_SERVED = [
+  { "@type": "Country", name: "Canada" },
+  ...PROVINCES_SERVED.map((name) => ({ "@type": "AdministrativeArea", name })),
+];
 
 export function organizationJsonLd() {
   return {
@@ -80,6 +98,21 @@ export function organizationJsonLd() {
     areaServed: AREA_SERVED,
     serviceArea: AREA_SERVED,
     address: ADDRESS,
+    // Geographic centre of Canada — reinforces a nationwide service area.
+    geo: { "@type": "GeoCoordinates", latitude: 56.1304, longitude: -106.3468 },
+    currenciesAccepted: "CAD",
+    priceRange: "$$",
+    serviceType: "Equipment financing and leasing",
+    knowsAbout: [
+      "Equipment financing",
+      "Equipment leasing",
+      "Sale and leaseback",
+      "Used equipment financing",
+      "Heavy equipment loans",
+      "Commercial vehicle financing",
+      "Construction equipment financing",
+      "Small business financing",
+    ],
     knowsLanguage: ["en-CA", "fr-CA"],
     sameAs: [
       "https://linkedin.com/company/financing-in-canada",

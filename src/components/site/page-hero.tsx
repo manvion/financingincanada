@@ -49,10 +49,10 @@ export function PageHero({
             <span className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">{eyebrow}</span>
           </span>
         )}
-        <h1 className="mt-5 max-w-3xl font-display text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
+        <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl">
           {title}
         </h1>
-        {description && <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/70">{description}</p>}
+        {description && <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70 sm:mt-5 sm:text-lg">{description}</p>}
         {children}
       </div>
     </section>

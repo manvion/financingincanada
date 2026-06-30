@@ -37,6 +37,23 @@ export const metadata: Metadata = {
     "commercial equipment financing",
     "heavy equipment leasing",
     "sale leaseback Canada",
+    // Province-level coverage
+    "equipment financing Ontario",
+    "equipment financing Alberta",
+    "equipment financing British Columbia",
+    "equipment financing Quebec",
+    "equipment financing Manitoba",
+    "equipment financing Saskatchewan",
+    "equipment financing Nova Scotia",
+    "equipment financing New Brunswick",
+    // Major-market coverage
+    "equipment financing Toronto",
+    "equipment financing Calgary",
+    "equipment financing Vancouver",
+    "equipment financing Montreal",
+    "equipment financing Edmonton",
+    "equipment financing Winnipeg",
+    "equipment financing Ottawa",
   ],
   icons: { icon: "/favicon.svg" },
   // Canada geo-targeting signals for search engines.

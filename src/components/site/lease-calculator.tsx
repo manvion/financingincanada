@@ -71,7 +71,7 @@ export function LeaseCalculator({
           <p className="mt-2 text-xs text-muted-foreground">
             {mode === "finance"
               ? "Amortized loan — you own the equipment outright at the end."
-              : "Lower payments — purchase the equipment for a $250 buyout at the end of the term."}
+              : "Lower monthly payments with the option to own the equipment at the end of the term."}
           </p>
         </div>
 
@@ -152,12 +152,6 @@ export function LeaseCalculator({
               <dt className="text-white/60">Total of payments</dt>
               <dd className="font-medium">{formatCurrency(totalPayments)}</dd>
             </div>
-            {mode === "lease" && (
-              <div className="flex justify-between">
-                <dt className="text-white/60">End-of-term buyout</dt>
-                <dd className="font-medium">{formatCurrency(LEASE_RESIDUAL)}</dd>
-              </div>
-            )}
             <div className="flex justify-between">
               <dt className="text-white/60">Est. finance cost</dt>
               <dd className="font-medium">{formatCurrency(financeCost)}</dd>
@@ -172,7 +166,9 @@ export function LeaseCalculator({
             </Link>
           </Button>
           <p className="mt-3 text-center text-xs text-white/50">
-            Estimate only. Final rate &amp; terms subject to approval (OAC).
+            {mode === "finance"
+              ? "For reference only. Your actual rate, monthly payment, and terms are confirmed on approval (OAC) and may differ."
+              : "For reference only. Your actual lease rate, monthly payment, and terms are confirmed on approval (OAC) and may differ."}
           </p>
         </div>
       </div>

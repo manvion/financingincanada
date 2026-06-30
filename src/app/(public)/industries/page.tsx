@@ -51,8 +51,8 @@ export default function IndustriesPage() {
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-navy-950/10 to-transparent" />
-                    <span className="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-md bg-navy/80 text-gold backdrop-blur-sm">
-                      <DynamicIcon name={industry.icon} className="h-5 w-5" />
+                    <span className="absolute left-4 top-4 flex items-center justify-center text-gold drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]">
+                      <DynamicIcon name={industry.icon} className="h-6 w-6" />
                     </span>
                   </div>
                   <div className="flex flex-1 flex-col p-6">

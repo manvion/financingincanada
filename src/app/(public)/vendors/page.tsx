@@ -43,8 +43,8 @@ export default function VendorsPage() {
             {BENEFITS.map((b, i) => (
               <Reveal key={b.title} delay={i}>
                 <div className="flex h-full flex-col rounded-lg border bg-card p-7 shadow-card">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-md bg-navy text-gold">
-                    <b.icon className="h-6 w-6" />
+                  <span className="flex h-10 items-center text-gold-700 dark:text-gold">
+                    <b.icon className="h-8 w-8" />
                   </span>
                   <h3 className="mt-5 font-display text-base font-semibold">{b.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{b.body}</p>

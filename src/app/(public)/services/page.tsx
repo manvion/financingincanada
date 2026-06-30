@@ -44,8 +44,8 @@ export default function ServicesPage() {
                   href={`/services/${service.slug}`}
                   className="group flex h-full flex-col rounded-lg border bg-card p-7 shadow-card transition-all hover:-translate-y-1 hover:border-gold/40 hover:shadow-premium"
                 >
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gold/10 text-gold-700 ring-1 ring-gold/15 transition-all duration-300 group-hover:scale-105 group-hover:bg-gold/20 dark:text-gold">
-                    <DynamicIcon name={service.icon} className="h-6 w-6" />
+                  <span className="flex h-10 items-center text-gold-700 transition-transform duration-300 group-hover:scale-110 dark:text-gold">
+                    <DynamicIcon name={service.icon} className="h-8 w-8" />
                   </span>
                   <h3 className="mt-5 font-display text-xl font-semibold text-foreground">{service.title}</h3>
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{service.summary}</p>

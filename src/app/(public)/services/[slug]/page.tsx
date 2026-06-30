@@ -82,8 +82,8 @@ export default async function ServiceDetailPage({ params }: { params: Params }) 
 
           <div className="rounded-2xl border bg-card p-7 shadow-card sm:p-8">
             <h3 className="flex items-center gap-3 font-display text-xl font-semibold">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold/10 text-gold-700 ring-1 ring-gold/15 dark:text-gold">
-                <DynamicIcon name={service.icon} className="h-5 w-5" />
+              <span className="flex h-10 w-10 items-center justify-center text-gold-700 dark:text-gold">
+                <DynamicIcon name={service.icon} className="h-6 w-6" />
               </span>
               Best for
             </h3>
@@ -116,8 +116,8 @@ export default async function ServiceDetailPage({ params }: { params: Params }) 
             {service.features.map((f, i) => (
               <Reveal key={f.title} delay={i}>
                 <div className="flex h-full gap-4 rounded-lg border bg-card p-6 shadow-card">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-gold/12 text-gold-700 dark:text-gold">
-                    <CheckCircle2 className="h-5 w-5" />
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center text-gold-700 dark:text-gold">
+                    <CheckCircle2 className="h-7 w-7" />
                   </span>
                   <div>
                     <h3 className="font-display text-base font-semibold">{f.title}</h3>
@@ -177,8 +177,8 @@ export default async function ServiceDetailPage({ params }: { params: Params }) 
                 className="group flex items-center justify-between gap-3 rounded-lg border bg-card p-5 shadow-card transition-colors hover:border-gold/40"
               >
                 <span className="flex items-center gap-3">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-md bg-gold/12 text-gold-700 dark:text-gold">
-                    <DynamicIcon name={s.icon} className="h-4.5 w-4.5" />
+                  <span className="flex h-9 w-9 items-center justify-center text-gold-700 dark:text-gold">
+                    <DynamicIcon name={s.icon} className="h-5 w-5" />
                   </span>
                   <span className="text-sm font-semibold">{s.shortTitle}</span>
                 </span>

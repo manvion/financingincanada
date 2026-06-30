@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { Hero } from "@/components/home/hero";
 import { LenderMarquee } from "@/components/home/lender-marquee";
 import { SectionHeading } from "@/components/site/section-heading";
@@ -71,8 +71,8 @@ export default function HomePage() {
             {WHY_CHOOSE_US.map((item, i) => (
               <Reveal key={item.title} delay={i} className="h-full">
                 <div className="card-premium group flex h-full gap-4 rounded-lg border bg-card p-6 shadow-card">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-gold/12 text-gold-700 dark:text-gold transition-transform duration-300 group-hover:scale-110">
-                    <DynamicIcon name={item.icon} className="h-5 w-5" />
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center text-gold-700 dark:text-gold transition-transform duration-300 group-hover:scale-110">
+                    <DynamicIcon name={item.icon} className="h-7 w-7" />
                   </span>
                   <div>
                     <h3 className="font-display text-base font-semibold text-foreground">
@@ -105,8 +105,8 @@ export default function HomePage() {
                   <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-gold bg-background font-display text-xl font-semibold text-gold">
                     {step.step}
                   </span>
-                  <span className="mt-5 flex h-11 w-11 items-center justify-center rounded-md bg-card text-navy shadow-card dark:text-white">
-                    <DynamicIcon name={step.icon} className="h-5 w-5" />
+                  <span className="mt-5 flex h-11 w-11 items-center justify-center text-gold-700 dark:text-gold">
+                    <DynamicIcon name={step.icon} className="h-7 w-7" />
                   </span>
                   <h3 className="mt-4 font-display text-lg font-semibold text-foreground">
                     {step.title}
@@ -178,7 +178,7 @@ export default function HomePage() {
                 "Flexible terms from 12 to 84 months",
               ].map((item) => (
                 <li key={item} className="flex items-center gap-3 text-sm text-white/80">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gold/15 text-gold">✓</span>
+                  <Check className="h-5 w-5 shrink-0 text-gold" />
                   {item}
                 </li>
               ))}

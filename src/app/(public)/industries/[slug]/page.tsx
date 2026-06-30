@@ -81,8 +81,8 @@ export default async function IndustryDetailPage({ params }: { params: Params })
 
           <div className="rounded-2xl border bg-card p-7 shadow-card sm:p-8">
             <h3 className="flex items-center gap-3 font-display text-xl font-semibold">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold/10 text-gold-700 ring-1 ring-gold/15 dark:text-gold">
-                <DynamicIcon name={industry.icon} className="h-5 w-5" />
+              <span className="flex h-10 w-10 items-center justify-center text-gold-700 dark:text-gold">
+                <DynamicIcon name={industry.icon} className="h-6 w-6" />
               </span>
               {industry.name} Equipment We Finance
             </h3>
@@ -114,8 +114,8 @@ export default async function IndustryDetailPage({ params }: { params: Params })
             {WHY_CHOOSE_US.slice(0, 6).map((item, i) => (
               <Reveal key={item.title} delay={i} className="h-full">
                 <div className="flex h-full gap-4 rounded-lg border bg-card p-6 shadow-card">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-gold/12 text-gold-700 dark:text-gold">
-                    <DynamicIcon name={item.icon} className="h-5 w-5" />
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center text-gold-700 dark:text-gold">
+                    <DynamicIcon name={item.icon} className="h-7 w-7" />
                   </span>
                   <div>
                     <h3 className="font-display text-base font-semibold">{item.title}</h3>

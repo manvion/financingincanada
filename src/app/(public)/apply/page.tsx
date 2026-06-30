@@ -34,8 +34,8 @@ export default function ApplyPage() {
           <div className="space-y-5 lg:sticky lg:top-24">
             {PERKS.map((perk) => (
               <div key={perk.title} className="flex items-start gap-4">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gold/15 text-gold-700 dark:text-gold">
-                  <perk.icon className="h-5 w-5" />
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center text-gold-700 dark:text-gold">
+                  <perk.icon className="h-6 w-6" />
                 </span>
                 <div>
                   <h3 className="font-display text-base font-semibold">{perk.title}</h3>

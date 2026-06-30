@@ -48,8 +48,8 @@ export default async function ContactPage() {
               <ul className="mt-6 space-y-3">
                 {TRUST.map((t) => (
                   <li key={t.text} className="flex items-center gap-3 text-sm font-medium">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-gold/12 text-gold-700 dark:text-gold">
-                      <t.icon className="h-4 w-4" />
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center text-gold-700 dark:text-gold">
+                      <t.icon className="h-5 w-5" />
                     </span>
                     {t.text}
                   </li>
@@ -61,8 +61,8 @@ export default async function ContactPage() {
               href={`mailto:${email}`}
               className="flex items-center gap-4 rounded-xl border bg-card p-5 shadow-card transition-colors hover:border-gold/40"
             >
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gold/10 text-gold-700 ring-1 ring-gold/15 dark:text-gold">
-                <AtSign className="h-5 w-5" />
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center text-gold-700 dark:text-gold">
+                <AtSign className="h-6 w-6" />
               </span>
               <div>
                 <p className="text-xs uppercase tracking-wider text-muted-foreground">Email Us</p>

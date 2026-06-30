@@ -107,8 +107,8 @@ export default function AboutPage() {
           ].map((card, i) => (
             <Reveal key={card.title} delay={i}>
               <div className="card-premium group flex h-full flex-col rounded-2xl border bg-card p-8 shadow-card">
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy text-gold transition-transform duration-300 group-hover:scale-110">
-                  <card.icon className="h-6 w-6" />
+                <span className="flex h-10 items-center text-gold-700 transition-transform duration-300 group-hover:scale-110 dark:text-gold">
+                  <card.icon className="h-8 w-8" />
                 </span>
                 <h3 className="mt-5 font-display text-xl font-bold">{card.title}</h3>
                 <p className="mt-3 leading-relaxed text-muted-foreground">{card.body}</p>
@@ -126,8 +126,8 @@ export default function AboutPage() {
             {VALUES.map((v, i) => (
               <Reveal key={v.title} delay={i}>
                 <div className="card-premium group flex h-full flex-col rounded-2xl border bg-card p-7 shadow-card">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gold/15 text-gold-700 dark:text-gold transition-transform duration-300 group-hover:scale-110">
-                    <v.icon className="h-6 w-6" />
+                  <span className="flex h-10 items-center text-gold-700 transition-transform duration-300 group-hover:scale-110 dark:text-gold">
+                    <v.icon className="h-8 w-8" />
                   </span>
                   <h3 className="mt-5 font-display text-lg font-semibold">{v.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{v.description}</p>
